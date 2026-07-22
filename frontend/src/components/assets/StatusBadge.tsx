@@ -2,12 +2,13 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface StatusBadgeProps {
-  status: string
+  status?: string
   className?: string
 }
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
-  const getStatusConfig = (s: string) => {
+  const getStatusConfig = (s?: string) => {
+    if (!s) return { label: 'Unknown', color: 'bg-muted text-muted-foreground border-border' }
     switch (s.toLowerCase()) {
       case 'active':
         return { label: 'Active', color: 'bg-success/10 text-success border-success/20' }
