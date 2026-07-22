@@ -58,12 +58,16 @@ function Hero() {
         </div>
       </AnimatedSlideUp>
 
-      <AnimatedScale className="mt-20 relative w-full max-w-5xl aspect-[21/9] rounded-2xl glass-heavy shadow-elevation-2 border flex items-center justify-center overflow-hidden group">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
-        <div className="relative z-10 flex flex-col items-center gap-4 text-muted-foreground/50">
-          <Cpu className="h-16 w-16" />
-          <p className="font-mono text-sm tracking-widest uppercase">System Initialized</p>
-        </div>
+      <AnimatedScale className="mt-20 relative w-full max-w-5xl aspect-[21/9] rounded-2xl shadow-elevation-2 border border-border/50 flex items-center justify-center overflow-hidden group bg-background/50 backdrop-blur-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent z-10" />
+        <img 
+          src="/dashboard-mockup.png" 
+          alt="AssetDNA Dashboard Interface" 
+          className="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105"
+        />
+        
+        {/* Glow effect underneath */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-purple-500/30 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
       </AnimatedScale>
     </section>
   )
