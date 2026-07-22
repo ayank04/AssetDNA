@@ -207,12 +207,12 @@ export const getDemoData = (endpoint: string): any => {
   
   const assetId = assetMatch[1];
   
-  if (endpoint.endsWith(`/timeline`)) return { data: DEMO_TIMELINE.filter(x => x.assetId === assetId) };
-  if (endpoint.endsWith(`/maintenance`)) return { data: DEMO_MAINTENANCE.filter(x => x.assetId === assetId) };
-  if (endpoint.endsWith(`/inspections`)) return { data: DEMO_INSPECTIONS.filter(x => x.assetId === assetId) };
-  if (endpoint.endsWith(`/engineering-changes`)) return { data: DEMO_ENGINEERING.filter(x => x.assetId === assetId) };
-  if (endpoint.endsWith(`/documents`)) return { data: DEMO_DOCUMENTS.filter(x => x.assetId === assetId) };
-  if (endpoint.endsWith(`/evidence`)) return { data: DEMO_EVIDENCE.filter(x => x.assetId === assetId) };
+  if (endpoint.endsWith(`/timeline`)) return { data: DEMO_TIMELINE.map(x => ({ ...x, assetId })) };
+  if (endpoint.endsWith(`/maintenance`)) return { data: DEMO_MAINTENANCE.map(x => ({ ...x, assetId })) };
+  if (endpoint.endsWith(`/inspections`)) return { data: DEMO_INSPECTIONS.map(x => ({ ...x, assetId })) };
+  if (endpoint.endsWith(`/engineering-changes`)) return { data: DEMO_ENGINEERING.map(x => ({ ...x, assetId })) };
+  if (endpoint.endsWith(`/documents`)) return { data: DEMO_DOCUMENTS.map(x => ({ ...x, assetId })) };
+  if (endpoint.endsWith(`/evidence`)) return { data: DEMO_EVIDENCE.map(x => ({ ...x, assetId })) };
   
   // Single asset
   const asset = DEMO_ASSETS.find(x => x.id === assetId);

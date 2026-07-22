@@ -62,7 +62,7 @@ export function RecentDocuments({ isLoading }: RecentDocumentsProps) {
               </div>
             </div>
             
-            <Link href="/documents" tabIndex={-1}>
+            <Link href="/assets/PX-100/documents" tabIndex={-1}>
               <Button size="sm" variant="ghost" className="h-8 w-8 p-0 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -71,7 +71,7 @@ export function RecentDocuments({ isLoading }: RecentDocumentsProps) {
         ))}
       </div>
       
-      <Link href="/documents" className="mt-4" tabIndex={-1}>
+      <Link href="/assets/PX-100/documents" className="mt-4" tabIndex={-1}>
         <Button variant="outline" className="w-full text-sm">
           View Document Library
         </Button>

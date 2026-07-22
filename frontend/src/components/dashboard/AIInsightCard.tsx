@@ -72,7 +72,7 @@ export function AIInsightCard({ isLoading }: AIInsightCardProps) {
         <div className="text-xs font-medium text-success flex items-center gap-1.5">
           <CheckCircle className="h-4 w-4" /> 94% Confidence
         </div>
-        <Link href="/investigate" tabIndex={-1}>
+        <Link href="/assets/PX-100/investigate" tabIndex={-1}>
           <Button size="sm" className="gap-2 group">
             Investigate
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
