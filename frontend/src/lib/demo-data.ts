@@ -202,9 +202,10 @@ export const getDemoData = (endpoint: string): any => {
 
   if (path.includes('/investigate') || path.includes('/summary')) return null; // handled separately
   
-  if (path.endsWith('/api/assets')) return { data: DEMO_ASSETS, meta: { total: DEMO_ASSETS.length } };
+  if (path.endsWith('/api/assets') || path.endsWith('/assets')) return { data: DEMO_ASSETS, meta: { total: DEMO_ASSETS.length } };
   
-  const assetMatch = path.match(/\/api\/assets\/([^\/]+)/);
+  // Try matching /assets/:id (with or without /api prefix)
+  const assetMatch = path.match(/(?:\/api)?\/assets\/([^\/]+)/);
   if (!assetMatch) return { data: [] };
   
   const assetId = assetMatch[1];
