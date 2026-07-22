@@ -50,41 +50,62 @@ function AbstractGraphic() {
         {/* Decorative Grid inside */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:32px_32px]" />
         
-        {/* Core Node */}
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-purple-600 p-[2px] shadow-[0_0_40px_rgba(59,130,246,0.3)] group-hover:shadow-[0_0_80px_rgba(59,130,246,0.5)] transition-all duration-700">
-            <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-              <Network className="h-10 w-10 text-primary animate-pulse" />
+        {/* Central UI Panel */}
+        <div className="relative z-10 w-full max-w-2xl bg-black/60 border border-white/10 rounded-xl p-6 shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
+                <Box className="h-4 w-4 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white">Pump PX-100</h3>
+                <p className="text-xs text-muted-foreground">Primary Coolant Loop</p>
+              </div>
+            </div>
+            <div className="px-3 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full text-xs font-medium flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              Critical Anomaly
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div className="flex items-center gap-2 mb-2">
+                <Activity className="h-4 w-4 text-purple-400" />
+                <span className="text-xs text-muted-foreground uppercase font-semibold tracking-wider">Radial Vibration</span>
+              </div>
+              <div className="flex items-end gap-2 h-16">
+                {[30, 45, 35, 60, 40, 85, 95].map((h, i) => (
+                  <div key={i} className={`flex-1 rounded-t-sm transition-all duration-1000 ${h > 80 ? 'bg-red-500' : 'bg-primary'}`} style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-white/5 rounded-lg p-4 border border-white/5">
+              <div className="flex items-center gap-2 mb-2">
+                <Network className="h-4 w-4 text-primary" />
+                <span className="text-xs text-muted-foreground uppercase font-semibold tracking-wider">AI Diagnosis</span>
+              </div>
+              <p className="text-sm text-gray-300 leading-relaxed mt-2">
+                Sustained vibration above 4.0 mm/s detected. Cross-referencing CMMS history suggests high probability of <span className="text-primary font-semibold">mechanical seal degradation</span>. 
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Floating Data Nodes */}
-        <div className="absolute top-[20%] left-[15%] w-48 p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hidden md:block">
-          <div className="flex items-center gap-3 mb-3">
-            <Database className="h-4 w-4 text-purple-400" />
-            <div className="h-2 w-20 bg-white/20 rounded-full" />
+        {/* Floating Context Nodes */}
+        <div className="absolute top-[15%] left-[10%] w-48 p-3 rounded-lg border border-white/10 bg-black/60 backdrop-blur-md hidden md:block">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+            <Database className="h-3 w-3" /> SCADA Ingestion
           </div>
-          <div className="space-y-2">
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-              <div className="h-full bg-purple-400 w-[70%]" />
-            </div>
-            <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-              <div className="h-full bg-purple-400 w-[40%]" />
-            </div>
-          </div>
+          <div className="text-sm text-white font-medium truncate">Telemetry Synced: 2ms ago</div>
         </div>
 
-        <div className="absolute bottom-[20%] right-[15%] w-56 p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hidden md:block">
-          <div className="flex items-center gap-3 mb-3">
-            <Activity className="h-4 w-4 text-primary" />
-            <div className="h-2 w-16 bg-white/20 rounded-full" />
+        <div className="absolute bottom-[15%] right-[10%] w-56 p-3 rounded-lg border border-white/10 bg-black/60 backdrop-blur-md hidden md:block">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+            <FileText className="h-3 w-3" /> Document Search
           </div>
-          <div className="flex items-end gap-1 h-8">
-            {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
-              <div key={i} className="flex-1 bg-primary/50 rounded-t-sm transition-all duration-1000" style={{ height: `${h}%` }} />
-            ))}
-          </div>
+          <div className="text-sm text-white font-medium truncate">Matched OEM Manual Section 4.2</div>
         </div>
 
         {/* Connecting Lines */}
@@ -148,13 +169,13 @@ function Features() {
   ]
 
   return (
-    <section id="features" className="py-32 px-6 relative z-10 border-t border-white/5 bg-background/50 backdrop-blur-xl">
+    <section id="features" className="py-24 px-6 relative z-10 border-t border-white/5 bg-background/50 backdrop-blur-xl">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-20 md:flex items-end justify-between gap-8">
-          <div className="max-w-2xl space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Engineered for the Enterprise.</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">Built from the ground up to handle massive, unstructured industrial datasets with millisecond latency.</p>
-          </div>
+        <div className="mb-20 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Engineered for the Enterprise.</h2>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Industrial operations generate millions of data points daily. AssetDNA is the only platform that merges structured telemetry with unstructured PDFs, logs, and human knowledge to form a complete understanding of your factory floor.
+          </p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -167,6 +188,71 @@ function Features() {
               <p className="text-muted-foreground leading-relaxed text-sm">{f.desc}</p>
             </AnimatedSlideUp>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function IntegrationData() {
+  return (
+    <section className="py-24 px-6 relative z-10 border-t border-white/5 bg-black/20">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <AnimatedSlideUp className="space-y-6">
+            <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-primary">
+              Full Stack Knowledge
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Everything connected. <br/> Nothing left behind.</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              When an alarm fires on the factory floor, your engineers shouldn't have to scramble through three different systems. Our AI autonomously aggregates the asset's live data alongside its entire historical context.
+            </p>
+            <ul className="space-y-4 pt-4">
+              {[
+                "SCADA & IoT Telemetry Streams",
+                "OEM Manuals & Schematic PDFs",
+                "CMMS Work Orders & Inspections",
+                "Historical Engineering Changes"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-gray-300">
+                  <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <ShieldCheck className="h-3 w-3" />
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </AnimatedSlideUp>
+          
+          <AnimatedSlideUp delay={0.2} className="relative">
+            <div className="aspect-square rounded-full border border-white/10 bg-gradient-to-br from-primary/5 to-purple-600/5 absolute -inset-4 blur-3xl -z-10" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4 mt-8">
+                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                  <Activity className="h-8 w-8 text-primary mb-4" />
+                  <h4 className="font-semibold text-white mb-2">Live Telemetry</h4>
+                  <p className="text-sm text-muted-foreground">Vibration, temperature, and pressure streaming in real-time.</p>
+                </div>
+                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                  <FileText className="h-8 w-8 text-purple-400 mb-4" />
+                  <h4 className="font-semibold text-white mb-2">Documentation</h4>
+                  <p className="text-sm text-muted-foreground">Vector-indexed OEM manuals and Standard Operating Procedures.</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                  <Clock className="h-8 w-8 text-blue-400 mb-4" />
+                  <h4 className="font-semibold text-white mb-2">Maintenance History</h4>
+                  <p className="text-sm text-muted-foreground">Decades of work orders and inspection reports.</p>
+                </div>
+                <div className="bg-gradient-to-br from-primary/20 to-purple-600/20 border border-primary/30 p-6 rounded-2xl">
+                  <Search className="h-8 w-8 text-white mb-4" />
+                  <h4 className="font-semibold text-white mb-2">AI Synthesizer</h4>
+                  <p className="text-sm text-gray-300">Merges all inputs into immediate, actionable answers.</p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSlideUp>
         </div>
       </div>
     </section>
@@ -228,6 +314,7 @@ export default function LandingPage() {
         <main>
           <Hero />
           <Features />
+          <IntegrationData />
           <CTA />
         </main>
         <Footer />
